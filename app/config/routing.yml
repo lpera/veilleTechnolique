@@ -1,0 +1,4 @@
+veille_technologiqueveille:
+    resource: "@veilleTechnologiqueveilleBundle/Resources/config/routing.yml"
+    prefix:   /
+

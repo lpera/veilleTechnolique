@@ -1,0 +1,8 @@
+veille_technologiqueveille_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: veilleTechnologiqueveilleBundle:Default:index }
+
+_home:
+  resource: "@veilleTechnologiqueveilleBundle/Controller/DefaultController.php"
+  type: annotation
+  prefix: /home
