@@ -1,0 +1,26 @@
+{% block head %}
+    <meta charset="utf-8">
+    <title>Veille Technologique</title>
+    {% block stylesheets %}
+        <link href="{{ asset('bundles/veilleTechnologique/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('bundles/veilleTechnologique/css/jumbotron.css') }}" rel="stylesheet">
+    {% endblock %}
+{% endblock %}
+
+<div style="padding:2em;">
+    {% for techno, info in ext %}
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title" id="panel-title">{{ techno }}<a class="anchorjs-link" href="#panel-title"><span class="anchorjs-icon"></span></a></h3>
+        </div>
+        <div class="panel-body">
+            {% if (info|raw == "") or (info|raw == null) %}
+                Il semblerait que le site de la technologie observ&eacute;e est plant&eacute;. R&eacute;&eacute;ssayez plus tard !
+            {% else %}
+                {{ info|raw }}
+            {% endif %}
+        </div>
+    </div>
+        
+    {% endfor %}
+</div>
