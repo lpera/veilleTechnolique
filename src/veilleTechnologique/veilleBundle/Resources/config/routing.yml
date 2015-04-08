@@ -5,4 +5,4 @@ veille_technologiqueveille_homepage:
 _home:
   resource: "@veilleTechnologiqueveilleBundle/Controller/DefaultController.php"
   type: annotation
-  prefix: /home
+  prefix: /
