@@ -20,17 +20,17 @@ class User {
     private $id;
 
     /**
-    * @ORM\Column(type="string", Lenght=30)
+    * @ORM\Column(type="string", length=30)
     */
     private $login;
 
     /**
-    * @ORM\Column(type="string", Lenght=16)
+    * @ORM\Column(type="string", length=16)
     */
     private $pass;
 
     /**
-    * @ORM\Column(type="string", Lenght=50)
+    * @ORM\Column(type="string", length=50)
     */
     private $email;
 

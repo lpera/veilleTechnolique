@@ -19,7 +19,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">Project name</a>
+              <a class="navbar-brand" href="{{ path('_home_hello', {}) }}">Veille Technologique</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <form class="navbar-form navbar-right">
@@ -29,7 +29,8 @@
                 <div class="form-group">
                   <input type="password" placeholder="Password" class="form-control">
                 </div>
-                <button type="submit" class="btn btn-success">Sign in</button>
+                 <a  class="btn btn-primary">connexion</a>
+                 <a href="{{ path('_home_inscription', {}) }}" class="btn btn-success">inscription</a>
               </form>
             </div><!--/.navbar-collapse -->
           </div>
@@ -43,35 +44,15 @@
             </div>
         </div>
         
-        <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
+        <div class="block">
+            {% block content %}{% endblock %}
+        
       </div>
-      
-      <hr>
-
-      <footer>
-        <p>&copy; Company 2014</p>
-      </footer>
-    </div>
+      {% set flashbag_notices = app.session.flashbag.get('notice')%}  
         
         
         <script type="text/javascript" src="{{ asset('bundles/veilleTechnologique/js/jquery.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/veilleTechnologique/js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/veilleTechnologique/js/fonction.js') }}"></script>
         
 {% endblock %}

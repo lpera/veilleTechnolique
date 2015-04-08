@@ -7,11 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 	/**
 	 * Parameter
 	 *
-	 * @ORM\Table(name="user")
+	 * @ORM\Table(name="technologie")
 	 * @ORM\Entity
 	 */
 
-class Techno {
+class Technologie {
     
     /**
         * @ORM\Id
@@ -21,7 +21,7 @@ class Techno {
     private $id;
     
     /**
-        * @ORM\Column(type="string", Lenght=30)
+        * @ORM\Column(type="string", length=30)
     */
     private $technologie;
     
