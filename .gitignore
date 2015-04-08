@@ -24,6 +24,8 @@
 
 
 # Assets and user uploads
+/web/bundles/framework/
+/web/bundles/sensiodistribution/
 /web/uploads/
 
 # PHPUnit
