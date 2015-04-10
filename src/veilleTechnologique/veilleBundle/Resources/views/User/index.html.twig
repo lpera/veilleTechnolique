@@ -1,0 +1,33 @@
+{% extends "veilleTechnologiqueveilleBundle::layout.html.twig" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            {% if haveListe == false %}
+                <h2>Vous ne poss&eacute;dez pas encore de liste !</h2>
+                Remplissez les champs ci-dessous pour cr&eacute;er votre propre liste*.
+                
+                <hr>
+                
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3>Cr&eacute;er une liste</h3>
+                        <hr>
+                        <form action="createListe" method="post">
+                            <div class="input-group">
+                                <span class="input-group-addon">&gt;</span>
+                                <input type="text" name="nameListe" class="form-control" placeholder="Nom de votre liste">
+                            </div>
+                            <input type="submit" class="btn btn-primary" style="width:100%;" value="Cr&eacute;er ma liste">
+                        </form>  
+                    </div>
+                </div>
+        </div>
+                
+                <i>* Une liste correspond &agrave; un ensemble de technologie que vous allez d&eacute;terminer afin de mettre en place votre dispositif de veille technologique.</i>
+            {% else %}
+                
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

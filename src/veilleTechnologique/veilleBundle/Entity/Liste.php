@@ -5,12 +5,12 @@ namespace veilleTechnologique\veilleBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Technologie
+ * Liste
  *
- * @ORM\Table(name="technologie")
+ * @ORM\Table(name="liste", indexes={@ORM\Index(name="idUser", columns={"idUser"})})
  * @ORM\Entity
  */
-class Technologie
+class Liste
 {
     /**
      * @var integer
@@ -29,6 +29,18 @@ class Technologie
     private $name;
 
     /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idUser", referencedColumnName="id")
+     * })
+     */
+    private $iduser;
+
+
+
+    /**
      * Get id
      *
      * @return integer
@@ -43,7 +55,7 @@ class Technologie
      *
      * @param string $name
      *
-     * @return Technologie
+     * @return Liste
      */
     public function setName($name)
     {
@@ -60,5 +72,29 @@ class Technologie
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set iduser
+     *
+     * @param \veilleTechnologique\veilleBundle\Entity\User $iduser
+     *
+     * @return Liste
+     */
+    public function setIduser(\veilleTechnologique\veilleBundle\Entity\User $iduser = null)
+    {
+        $this->iduser = $iduser;
+
+        return $this;
+    }
+
+    /**
+     * Get iduser
+     *
+     * @return \veilleTechnologique\veilleBundle\Entity\User
+     */
+    public function getIduser()
+    {
+        return $this->iduser;
     }
 }

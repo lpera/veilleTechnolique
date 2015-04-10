@@ -3,115 +3,124 @@
 namespace veilleTechnologique\veilleBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-	
-	/**
-	 * Parameter
-	 *
-	 * @ORM\Table(name="user")
-	 * @ORM\Entity
-	 */
 
-class User {
+/**
+ * User
+ *
+ * @ORM\Table(name="user")
+ * @ORM\Entity
+ */
+class User
+{
     /**
-        * @ORM\Id
-        * @ORM\Column(type="integer")
-        * @ORM\GeneratedValue (strategy="AUTO")
-    */
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
     private $id;
 
     /**
-    * @ORM\Column(type="string", length=30)
-    */
-    private $login;
+     * @var string
+     *
+     * @ORM\Column(name="user", type="string", length=255, nullable=false)
+     */
+    private $user;
 
     /**
-    * @ORM\Column(type="string", length=16)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="pass", type="string", length=255, nullable=false)
+     */
     private $pass;
 
     /**
-    * @ORM\Column(type="string", length=50)
-    */
-    private $email;
-
-
-
+     * @var string
+     *
+     * @ORM\Column(name="mail", type="string", length=255, nullable=false)
+     */
+    private $mail;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
-    
+
     /**
-     * Get pass
+     * Set user
      *
-     * @return string 
+     * @param string $user
+     *
+     * @return User
      */
-    public function getLogin()
+    public function setUser($user)
     {
-            return $this->login;
+        $this->user = $user;
+
+        return $this;
     }
 
-     /**
-     * Set login
-     *
-     * @param string $login
-     * @return Parameter
-     */
-    public function setLogin($login)
-    {
-            $this->login = $login;
-
-    }
-    
     /**
-     * Get pass
+     * Get user
      *
-     * @return string 
+     * @return string
      */
-    public function getPass()
+    public function getUser()
     {
-            return $this->pass;
+        return $this->user;
     }
 
-     /**
+    /**
      * Set pass
      *
      * @param string $pass
-     * @return Parameter
+     *
+     * @return User
      */
     public function setPass($pass)
     {
-            $this->pass = $pass;
+        $this->pass = $pass;
 
+        return $this;
     }
 
     /**
-     * Get email
+     * Get pass
      *
-     * @return string 
+     * @return string
      */
-    public function getEmail()
+    public function getPass()
     {
-            return $this->email;
+        return $this->pass;
     }
 
-     /**
-     * Set email
+    /**
+     * Set mail
      *
-     * @param string $email
-     * @return Parameter
+     * @param string $mail
+     *
+     * @return User
      */
-    public function setEmail($email)
+    public function setMail($mail)
     {
-            $this->email = $email;
+        $this->mail = $mail;
+
+        return $this;
     }
-	
+
+    /**
+     * Get mail
+     *
+     * @return string
+     */
+    public function getMail()
+    {
+        return $this->mail;
+    }
 }
-
-?>

@@ -6,3 +6,8 @@ _home:
   resource: "@veilleTechnologiqueveilleBundle/Controller/DefaultController.php"
   type: annotation
   prefix: /
+
+_user:
+  resource: "@veilleTechnologiqueveilleBundle/Controller/UserController.php"
+  type: annotation
+  prefix: /user/

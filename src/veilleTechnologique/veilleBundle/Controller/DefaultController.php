@@ -37,9 +37,9 @@ class DefaultController extends Controller
         
         // Création du formulaire.
         $form = $this->get('form.factory')->createBuilder('form', $user)
-                ->add('login','text')
+                ->add('user','text')
                 ->add('pass','password')
-                ->add('email','text')
+                ->add('mail','text')
                 ->add('valide','submit')
                 ->getForm();
         
@@ -50,11 +50,12 @@ class DefaultController extends Controller
         {
             // On persiste l'utilisateur dans la base de donnée.
             $em = $this->getDoctrine()->getManager();
+            $user->setPass(md5($user->getPass()));
             $em->persist($user);
             $em->flush();
             
             // Envois un message flash à l'utilisateur.
-            $this->get('session')->getFlashBag()->add('success','Vous vous êtes bien enregistré(e) sur l\'application, '.$user->getLogin().' !');
+            $this->get('session')->getFlashBag()->add('success','Vous vous êtes bien enregistré(e) sur l\'application, '.$user->getUser().' !');
 
             // On redirige l'utilisateur sur l'accueil.
             return $this->redirect($this->generateUrl('_default_hello', array()));

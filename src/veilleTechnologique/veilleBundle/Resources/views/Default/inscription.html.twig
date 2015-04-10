@@ -11,7 +11,7 @@
                     {{form_start(form)}}
                         <div class="input-group">
                             <span class="input-group-addon" >&gt;</span>
-                            {{form_widget(form.login, {'attr': {'class': 'form-control','placeholder':'Nom d\'utilisateur'}})}}
+                            {{form_widget(form.user, {'attr': {'class': 'form-control','placeholder':'Nom d\'utilisateur'}})}}
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon" >&gt;</span>
@@ -19,7 +19,7 @@
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">&gt;</span>
-                            {{form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder':'Email'}})}}
+                            {{form_widget(form.mail, {'attr': {'class': 'form-control', 'placeholder':'Email'}})}}
                         </div>
                     <br>
                     {{form_widget(form.valide, {'attr': {'class': 'btn btn-primary', 'style':'width:100%'}})}}
