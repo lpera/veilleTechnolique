@@ -123,4 +123,14 @@ class User
     {
         return $this->mail;
     }
+    
+    /**
+     * A supprimer après les tests.
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        
+        return $id;
+    }
 }

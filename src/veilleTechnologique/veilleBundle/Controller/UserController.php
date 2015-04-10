@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use veilleTechnologique\veilleBundle\Entity\User as User;
 use veilleTechnologique\veilleBundle\Entity\Liste as Liste;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session as Session;
 
 /**
  * Controller USER. Functions :
@@ -27,7 +28,7 @@ class UserController extends Controller
         // Utilisé pour les tests
         $id = 1;
         $user = $this->getDoctrine()->getRepository("veilleTechnologiqueveilleBundle:User")->findOneBy(array("id" => $id));
-        $listes = $this->getDoctrine()->getRepository("veilleTechnologiqueveilleBundle:Liste")->findBy(array("user" => $id));
+        $listes = $this->getDoctrine()->getRepository("veilleTechnologiqueveilleBundle:Liste")->findBy(array("iduser" => $id));
         if($listes)
         {
             // L'utilisateur possède une ou plusieurs listes.
@@ -41,16 +42,43 @@ class UserController extends Controller
     }
     
     /**
+     * @Route("/logout", name="_user_logout")
+     * @Template()
+     */
+    public function logoutAction()
+    {
+        $session = new Session();
+        $session->remove('id');
+        return $this->redirect($this->generateUrl('_default_index', array()));
+    }
+    
+    /**
      * @Route("/createListe", name="_user_create_liste")
      * @Template()
      */
     public function createListeAction(Request $request)
     {
         $nameListe = $request->get("nameListe");
-        $id = 1;
+        $session = new Session();
+        $user = $this->getDoctrine()->getRepository("veilleTechnologiqueveilleBundle:User")->findOneBy(array('id' => $session->get('id')));
         
-        $liste = new Liste();
-        $liste->setUser();
-        // $liste->set
+        if($nameListe != "" && $nameListe != null)
+        {
+            $liste = new Liste();
+            $liste->setName($nameListe);
+            $liste->setIduser($user);
+            
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($liste);
+            $manager->flush();
+            
+            $this->get('session')->getFlashBag()->add('success','La liste '.$liste->getName().' a bien été créée !');
+            
+            /* Une belle documentation sur le forward, redirect & render se trouve ci-contre
+             * http://openclassrooms.com/forum/sujet/symfony2-redirect-ou-render#message-85350139
+             */
+            $response = $this->forward('veilleTechnologiqueveilleBundle:User:index', array());
+            return $response;
+        }
     }
 }

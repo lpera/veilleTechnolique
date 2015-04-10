@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use veilleTechnologique\veilleBundle\Entity\User as User;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session as Session;
 
 /**
  * Controller ANONYMOUS. Functions :
@@ -18,11 +19,40 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="_default_hello")
+     * @Route("/", name="_default_index")
      * @Template()
      */
     public function indexAction()
     {
+        return array();
+    }
+    
+    /**
+     * @Route("/login", name="_default_login")
+     * @Template()
+     */
+    public function loginAction(Request $request)
+    {
+        $user = $request->get('user'); 
+        $pass = $request->get('pass');
+        
+        $queryUser = $this->getDoctrine()->getRepository("veilleTechnologiqueveilleBundle:User")->findOneBy(array('user' => $user, 'pass' => md5($pass)));
+        
+        if($queryUser)
+        {
+            // Il y a bien un utilisateur. On le met donc en session.
+            $session = new Session();
+            $session->set('id', $queryUser->getId());
+            
+            $this->get('session')->getFlashBag()->add('success','Vous vous êtes correctement connecté(e), '.$queryUser->getUser().' !');
+            return $this->redirect($this->generateUrl('_user_index', array()));
+        }
+        else
+        {
+            $this->get('session')->getFlashBag()->add('danger','Combinaison nom d\'utilisateur/mot de passe invalide !');
+            $response = $this->forward('veilleTechnologiqueveilleBundle:Default:index', array());
+            return $response;
+        }
         return array();
     }
     
@@ -58,7 +88,7 @@ class DefaultController extends Controller
             $this->get('session')->getFlashBag()->add('success','Vous vous êtes bien enregistré(e) sur l\'application, '.$user->getUser().' !');
 
             // On redirige l'utilisateur sur l'accueil.
-            return $this->redirect($this->generateUrl('_default_hello', array()));
+            return $this->redirect($this->generateUrl('_default_index', array()));
         }
         // TODO : Condition ELSE à faire : renvoyer un message d'erreur pour dire que c'est invalide.
         
