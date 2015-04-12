@@ -3,7 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp/www/veilleTechnologique/app/config/parameters.yml</file>
+            <file>file:/C:/wamp/www/veilleTechnologique/app/config/config_prod.yml</file>
+            <file>file:/C:/wamp/www/veilleTechnologique/app/config/security.yml</file>
+            <file>file:/C:/wamp/www/veilleTechnologique/src/veilleTechnologique/veilleBundle/Resources/config/routing.yml</file>
+            <file>file:/C:/wamp/www/veilleTechnologique/app/config/config_dev.yml</file>
+            <file>file:/C:/wamp/www/veilleTechnologique/app/config/config.yml</file>
+            <file>file:/C:/wamp/www/veilleTechnologique/app/AppKernel.php</file>
+            <file>file:/C:/wamp/www/veilleTechnologique/src/veilleTechnologique/veilleBundle/Resources/views/menu.html.twig</file>
+            <file>file:/C:/wamp/www/veilleTechnologique/app/config/routing.yml</file>
+            <file>file:/C:/wamp/www/veilleTechnologique/src/veilleTechnologique/veilleBundle/Resources/views/layout.html.twig</file>
+            <file>file:/C:/wamp/www/veilleTechnologique/src/veilleTechnologique/veilleBundle/Controller/UserController.php</file>
+            <file>file:/C:/wamp/www/veilleTechnologique/src/veilleTechnologique/veilleBundle/Entity/User.php</file>
+            <file>file:/C:/wamp/www/veilleTechnologique/src/veilleTechnologique/veilleBundle/Entity/Liste.php</file>
+            <file>file:/C:/wamp/www/veilleTechnologique/src/veilleTechnologique/veilleBundle/Resources/views/Default/index.html.twig</file>
+            <file>file:/C:/wamp/www/veilleTechnologique/src/veilleTechnologique/veilleBundle/Resources/views/Default/inscription.html.twig</file>
+            <file>file:/C:/wamp/www/veilleTechnologique/.gitignore</file>
+            <file>file:/C:/wamp/www/veilleTechnologique/app/config/routing_dev.yml</file>
+            <file>file:/C:/wamp/www/veilleTechnologique/src/veilleTechnologique/veilleBundle/Resources/views/Default/interface.html.twig</file>
+            <file>file:/C:/wamp/www/veilleTechnologique/src/veilleTechnologique/veilleBundle/Controller/DefaultController.php</file>
         </group>
     </open-files>
 </project-private>
