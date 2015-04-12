@@ -93,11 +93,11 @@ class DefaultController extends Controller {
     public function interfaceAction(Request $request) {
         $ext = array();
 
-        $ext['PHP'] = getPHP('darkblue');
-        $ext['Spring'] = getSpring('orange');
-        $ext['Bootstrap'] = getBootstrap('purple');
-        $ext['NodeJS'] = getNodeJS('lightgreen');
-        $ext['Symfony2'] = getSymfony2('green');
+        $ext['PHP'] = $this->getPHP('darkblue');
+        $ext['Spring'] = $this->getSpring('orange');
+        $ext['Bootstrap'] = $this->getBootstrap('purple');
+        $ext['NodeJS'] = $this->getNodeJS('lightgreen');
+        $ext['Symfony2'] = $this->getSymfony2('green');
 
         return array('ext' => $ext, 'haveList' => true);
     }
@@ -123,7 +123,7 @@ class DefaultController extends Controller {
                         $ext['NodeJS'] = $this->getSpring('lightgreen');
                     } elseif ($langage->getName() == "Symfony2") {
                         $ext['Symfony2'] = $this->getSpring('green');
-                    } 
+                    }
                     // $this->getDoctrine()->getRepository("veilleTechnologiqueveilleBundle:Technologie")->
                 }
                 return $this->render('veilleTechnologiqueveilleBundle:Default:interface.html.twig', array('ext' => $ext, 'haveList' => true));
@@ -137,7 +137,7 @@ class DefaultController extends Controller {
         }
     }
 
-    public function getPHP($color) {
+    private function getPHP($color) {
         $url = 'http://php.net/';
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -162,7 +162,7 @@ class DefaultController extends Controller {
         return "<div id='php'>" . $resultat . "</div>";
     }
 
-    function getSymfony2($color) {
+    private function getSymfony2($color) {
         $url = 'http://symfony.com/blog/category/releases';
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -187,7 +187,7 @@ class DefaultController extends Controller {
         return "<div id='symfony2'>" . $resultat . "</div>";
     }
 
-    function getNodeJS($color) {
+    private function getNodeJS($color) {
         $url = 'http://blog.nodejs.org/';
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -212,7 +212,7 @@ class DefaultController extends Controller {
         return "<div id='nodejs'>" . $resultat . "</div></div>";
     }
 
-    function getSpring($color) {
+    private function getSpring($color) {
         $url = 'http://spring.io/blog/category/releases';
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -237,7 +237,7 @@ class DefaultController extends Controller {
         return "<div id='spring'>" . $resultat . "</div>";
     }
 
-    function getBootstrap($color) {
+    private function getBootstrap($color) {
         $url = 'http://blog.getbootstrap.com/';
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
