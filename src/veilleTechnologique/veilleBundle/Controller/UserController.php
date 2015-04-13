@@ -49,6 +49,7 @@ class UserController extends Controller
     {
         $session = new Session();
         $session->remove('id');
+        $this->get('session')->getFlashBag()->add('success','Vous vous êtes correctement déconnecté !');
         return $this->redirect($this->generateUrl('_default_index', array()));
     }
     
