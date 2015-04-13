@@ -26,9 +26,9 @@ class UserController extends Controller
     public function indexAction()
     {
         // Utilisé pour les tests
-        $id = 1;
-        $user = $this->getDoctrine()->getRepository("veilleTechnologiqueveilleBundle:User")->findOneBy(array("id" => $id));
-        $listes = $this->getDoctrine()->getRepository("veilleTechnologiqueveilleBundle:Liste")->findBy(array("iduser" => $id));
+        $session = new Session();
+        $user = $this->getDoctrine()->getRepository("veilleTechnologiqueveilleBundle:User")->findOneBy(array('id' => $session->get('id')));
+        $listes = $this->getDoctrine()->getRepository("veilleTechnologiqueveilleBundle:Liste")->findBy(array("iduser" => $session->get('id')));
         if($listes)
         {
             // L'utilisateur possède une ou plusieurs listes.
