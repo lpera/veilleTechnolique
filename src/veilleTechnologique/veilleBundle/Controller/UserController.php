@@ -32,12 +32,12 @@ class UserController extends Controller
         if($listes)
         {
             // L'utilisateur possède une ou plusieurs listes.
-            return array("listes" => $listes, "haveListe" => true);
+            return array("listes" => $listes, "haveListe" => true,"changeListe" => false);
         }
         else
         {
             // L'utilisateur ne possède aucune liste.
-            return array("haveListe" => false);
+            return array("haveListe" => false,"changeListe" => false);
         }
     }
     
@@ -81,5 +81,58 @@ class UserController extends Controller
             $response = $this->forward('veilleTechnologiqueveilleBundle:User:index', array());
             return $response;
         }
+        else
+        {
+            $this->get('session')->getFlashBag()->add('warning','Veuillez saisire le nom de votre liste avant de valider !');
+            $response = $this->forward('veilleTechnologiqueveilleBundle:User:index', array());
+            return $response;
+        }
     }
+    
+     /**
+     * @Route("/deleteListe", name="_user_delete_liste")
+     * @Template()
+     */
+    public function deleteListeAction(Request $request)
+    {
+        $idListe = $request->get("idListe");
+        $em = $this->getDoctrine()->getManager();
+        $deleteListe = $em->getRepository("veilleTechnologiqueveilleBundle:Liste")->findOneBy(array('id' => $idListe));
+        $em->remove($deleteListe);
+        $em->flush();
+        
+        $this->get('session')->getFlashBag()->add('success','La liste '.$deleteListe->getName().' a bien été supprimer !');
+        
+        $response = $this->redirect($this->generateUrl('_user_index', array()));
+        return $response;
+    }
+    
+     /**
+     * @Route("/changeListe", name="_user_change_liste")
+     * @Template()
+     */
+    
+    public function changeListeAction (Request $request)
+    {
+        $idListeChange = $request->get("idListe");
+        $change = $request->get("change");
+        $session = new Session();
+        $em = $this->getDoctrine()->getManager();
+        $listes = $em->getRepository("veilleTechnologiqueveilleBundle:Liste")->findBy(array("iduser" => $session->get('id')));
+        
+        if($change==true){
+            $nameListeChange = $request->get("nameListeChange");
+            $laliste = $em->getRepository("veilleTechnologiqueveilleBundle:Liste")->findOneBy(array("id" => $idListeChange));
+            $laliste->setName($nameListeChange);
+            $em->flush();
+            $response = $this->redirect($this->generateUrl('_user_index', array()));
+        }
+        else{
+            $response = $this->render('veilleTechnologiqueveilleBundle:User:index.html.twig', array("haveListe" => true,"listes" => $listes,"changeListe" => true,"idListeChange" => $idListeChange));
+        }
+        return $response;
+        
+        
+    }
+    
 }

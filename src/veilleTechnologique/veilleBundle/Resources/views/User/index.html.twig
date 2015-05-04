@@ -3,8 +3,8 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            {% if haveListe == false %}
-                <h2>Vous ne poss&eacute;dez pas encore de liste !</h2>
+            {% if haveListe == true %}
+                <h2>Creer une autre liste</h2>
                 Remplissez les champs ci-dessous pour cr&eacute;er votre propre liste*.
                 
                 <hr>
@@ -22,12 +22,60 @@
                         </form>  
                     </div>
                 </div>
-        </div>
+                <table class="table table-bordered">
+                    <tr>
+			<th style="text-align:center">Nom de la liste</th>
+			<th>Modifier</th>
+			<th>Supprimer</th>
+                    </tr>
+                    {% for liste in listes %}
+                        <tr>
+                            {% if changeListe == true and idListeChange == liste.id %}
+                                <form action="changeListe" method="post">
+                                    <td style="text-align:center">
+                                        <input type="text" name="nameListeChange" class="form-control" value="{{liste.name}}" style="text-align:center">
+                                    </td>
+                                    <input type="hidden" name="idListe" value={{liste.id}}>
+                                    <input type="hidden" name="change" value=true>
+                                    <td style="width:50px"><button type="submit" class="btn btn-info" >Appliquer</button></td>
+                                </form>
+                                
+                            
+                            {% else %}
+                                <td style="text-align:center">{{liste.name}}</td>
+                                <td style="width:50px"><a class="btn btn-info" href="{{ path('_user_change_liste', {'idListe':liste.id,'change':false}) }}">Modifier</a></td>
+                            {% endif %}
+                            
+                            
+                            <td style="width:50px"><a name={{liste.id}} class="btn btn-danger" href="{{ path('_user_delete_liste', {'idListe':liste.id}) }}">Supprimer</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+        
                 
-                <i>* Une liste correspond &agrave; un ensemble de technologie que vous allez d&eacute;terminer afin de mettre en place votre dispositif de veille technologique.</i>
+                
             {% else %}
+                                <h2>Vous ne poss&eacute;dez pas encore de liste !</h2>
+                Remplissez les champs ci-dessous pour cr&eacute;er votre propre liste*.
                 
+                <hr>
+                
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3>Cr&eacute;er une liste</h3>
+                        <hr>
+                        <form action="createListe" method="post">
+                            <div class="input-group">
+                                <span class="input-group-addon">&gt;</span>
+                                <input type="text" name="nameListe" class="form-control" placeholder="Nom de votre liste">
+                            </div>
+                            <input type="submit" class="btn btn-primary" style="width:100%;" value="Cr&eacute;er ma liste">
+                        </form>  
+                    </div>
+                </div>
             {% endif %}
+                <i>* Une liste correspond &agrave; un ensemble de technologie que vous allez d&eacute;terminer afin de mettre en place votre dispositif de veille technologique.</i>
+                </div>
         </div>
     </div>
 {% endblock %}
